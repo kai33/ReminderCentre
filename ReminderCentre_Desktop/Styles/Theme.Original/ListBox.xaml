@@ -1,0 +1,50 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<!--To cancel the system style-->
+    <!--RC_ListBox.ItemContainerStyle_Original-->
+    <Style x:Key="RC_ListBox.ItemContainerStyle_Original" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Background="{x:Null}">
+                		<ContentPresenter HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0"/>
+                	</Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+	<!--RC_ListBox.ItemContainerStyle_InnerTextBoxVer_Original-->
+    <Style x:Key="RC_ListBox.ItemContainerStyle_InnerTextBoxVer_Original" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Grid Background="{x:Null}">
+                		<ContentPresenter HorizontalAlignment="Stretch" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="0"/>
+                	</Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+		<Style.Triggers>
+			<Trigger Property="IsKeyboardFocusWithin" Value="True">
+				<Setter Property="IsSelected" Value="True" />
+            </Trigger>
+		</Style.Triggers>
+    </Style>
+    <!--RC_ListBox.Style_Original-->
+    <Style x:Key="RC_ListBox.Style_Original" TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}">
+                    <ItemsPresenter SnapsToDevicePixels="True"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

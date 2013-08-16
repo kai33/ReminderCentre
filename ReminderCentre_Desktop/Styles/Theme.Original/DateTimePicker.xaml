@@ -1,0 +1,279 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    xmlns:xwtk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/ReminderCentre;component/Styles/Theme.Original/Calendar.xaml" />
+		<ResourceDictionary Source="pack://application:,,,/ReminderCentre;component/Styles/Theme.Original/ScrollViewer.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <!--RC_DateTimePicker.Style_Orignal-->
+	<Style x:Key="RC_DateTimePicker.Style_Orignal" TargetType="{x:Type xwtk:DateTimePicker}">
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Focusable" Value="False"/>
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+		<Setter Property="HorizontalContentAlignment" Value="Right"/>
+		<Setter Property="TextAlignment" Value="Right"/>
+		<Setter Property="TimeWatermarkTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<ContentControl Content="{Binding}" Foreground="Gray" Focusable="False" Margin="0,0,3,0"/>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="WatermarkTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<ContentControl Content="{Binding}" Foreground="Gray" Focusable="False" Margin="0,0,3,0"/>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type xwtk:DateTimePicker}">
+					<Grid>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*"/>
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<xwtk:ButtonSpinner x:Name="PART_Spinner" AllowSpin="True" BorderThickness="0" Background="{x:Null}" IsTabStop="False" ShowButtonSpinner="False">
+								<xwtk:WatermarkTextBox x:Name="PART_TextBox" AcceptsReturn="False" BorderThickness="0" Background="Transparent" Foreground="#515151" FontWeight="{TemplateBinding FontWeight}" FontStyle="{TemplateBinding FontStyle}" FontStretch="{TemplateBinding FontStretch}" FontSize="{TemplateBinding FontSize}" FontFamily="{TemplateBinding FontFamily}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" MinWidth="93.06" Padding="0,0,2,0" TextAlignment="Left" TextWrapping="NoWrap" Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" TabIndex="{TemplateBinding TabIndex}" Watermark="Select a due date"/>
+							</xwtk:ButtonSpinner>
+							<ToggleButton x:Name="_calendarToggleButton" Grid.Column="1" Focusable="False" IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}}">
+								<ToggleButton.Style>
+									<Style TargetType="{x:Type ToggleButton}">
+										<Setter Property="Template">
+											<Setter.Value>
+												<ControlTemplate TargetType="{x:Type ToggleButton}">
+													<Grid Background="#11FFFFFF" FlowDirection="LeftToRight" HorizontalAlignment="Left" Height="18" Margin="0" VerticalAlignment="Top" Width="19">
+														<Grid.ColumnDefinitions>
+															<ColumnDefinition Width="20*"/>
+															<ColumnDefinition Width="20*"/>
+															<ColumnDefinition Width="20*"/>
+															<ColumnDefinition Width="20*"/>
+														</Grid.ColumnDefinitions>
+														<Grid.RowDefinitions>
+															<RowDefinition Height="23*"/>
+															<RowDefinition Height="19*"/>
+															<RowDefinition Height="19*"/>
+															<RowDefinition Height="19*"/>
+														</Grid.RowDefinitions>
+														<VisualStateManager.VisualStateGroups>
+															<VisualStateGroup x:Name="CommonStates1">
+																<VisualState x:Name="Normal1"/>
+																<VisualState x:Name="MouseOver1"/>
+																<VisualState x:Name="Pressed1"/>
+																<VisualState x:Name="Disabled1"/>
+															</VisualStateGroup>
+															<VisualStateGroup x:Name="CommonStates">
+																<VisualState x:Name="Normal"/>
+																<VisualState x:Name="MouseOver">
+																	<Storyboard>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																	</Storyboard>
+																</VisualState>
+																<VisualState x:Name="Pressed">
+																	<Storyboard>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																	</Storyboard>
+																</VisualState>
+																<VisualState x:Name="Disabled"/>
+															</VisualStateGroup>
+														</VisualStateManager.VisualStateGroups>
+														<Path x:Name="path" Data="M1.9882235,4.708 L13.82178,4.7913335 8.0715525,13.158485 z" Fill="#FF4193D8" HorizontalAlignment="Left" Height="6.334" Margin="2.32,1.718,0,0" Stretch="Fill" Stroke="#FF4193D8" StrokeThickness="2" VerticalAlignment="Top" Width="8.411" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="1"/>
+														<Border x:Name="DisabledVisual" BorderBrush="#B2FFFFFF" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="0,0,.5,.5" Opacity="0" Grid.Row="0" Grid.RowSpan="4"/>
+													</Grid>
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+									</Style>
+								</ToggleButton.Style>
+							</ToggleButton>
+						</Grid>
+						<Popup x:Name="PART_Popup" IsOpen="{Binding IsChecked, ElementName=_calendarToggleButton}" StaysOpen="False" PopupAnimation="None" AllowsTransparency="True">
+							<Grid Margin="0">
+								<Border BorderThickness="3" Padding="2,2,2,7" BorderBrush="#FF9DBEDA" CornerRadius="0" Background="White" Margin="0">
+									<StackPanel>
+										<Calendar Style="{StaticResource RC_Calendar.Style_Original}" x:Name="PART_Calendar" BorderThickness="0" />
+										<xwtk:TimePicker x:Name="PART_TimeUpDown" Background="{x:Null}" Foreground="#FF515151" FormatString="{TemplateBinding TimeFormatString}" Format="{TemplateBinding TimeFormat}" Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}" BorderBrush="{x:Null}" Style="{DynamicResource RC_TimePicker.Style_Original}" />
+									</StackPanel>
+								</Border>
+							</Grid>
+						</Popup>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    <!--RC_TimePicker.Style_Original-->
+	<Style x:Key="RC_TimePicker.Style_Original" TargetType="{x:Type xwtk:TimePicker}">
+		<Setter Property="WatermarkTemplate">
+			<Setter.Value>
+				<DataTemplate>
+					<ContentControl Content="{Binding}" Foreground="Gray" Focusable="False" Margin="0,0,3,0"/>
+				</DataTemplate>
+			</Setter.Value>
+		</Setter>
+		<Setter Property="IsTabStop" Value="False"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type xwtk:TimePicker}">
+					<Grid Width="69">
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,-5,0,0">
+							<xwtk:DateTimeUpDown x:Name="PART_TimeUpDown" AllowSpin="{TemplateBinding AllowSpin}" BorderThickness="0" Background="{TemplateBinding Background}" ContextMenu="{TemplateBinding ContextMenu}" Foreground="{TemplateBinding Foreground}" FormatString="{TemplateBinding FormatString}" ShowButtonSpinner="False" TextAlignment="{TemplateBinding TextAlignment}" Text="" TabIndex="{TemplateBinding TabIndex}" Value="{Binding Value, RelativeSource={RelativeSource TemplatedParent}}" WatermarkTemplate="{TemplateBinding WatermarkTemplate}" Watermark="--Time--" HorizontalContentAlignment="Center" Width="55">
+								<xwtk:DateTimeUpDown.Format>
+									<TemplateBinding Property="Format">
+										<TemplateBinding.Converter>
+											<xctk:TimeFormatToDateTimeFormatConverter/>
+										</TemplateBinding.Converter>
+									</TemplateBinding>
+								</xwtk:DateTimeUpDown.Format>
+							</xwtk:DateTimeUpDown>
+							<ToggleButton x:Name="_timePickerToggleButton" Grid.Column="1" Focusable="False" IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}}">
+								<ToggleButton.Style>
+									<Style TargetType="{x:Type ToggleButton}">
+										<Setter Property="Template">
+											<Setter.Value>
+												<ControlTemplate TargetType="{x:Type ToggleButton}">
+													<Grid Background="#11FFFFFF" FlowDirection="LeftToRight" HorizontalAlignment="Center" Height="18" Margin="0" VerticalAlignment="Center" Width="19">
+														<Grid.ColumnDefinitions>
+															<ColumnDefinition Width="20*"/>
+															<ColumnDefinition Width="20*"/>
+															<ColumnDefinition Width="20*"/>
+															<ColumnDefinition Width="20*"/>
+														</Grid.ColumnDefinitions>
+														<Grid.RowDefinitions>
+															<RowDefinition Height="23*"/>
+															<RowDefinition Height="19*"/>
+															<RowDefinition Height="19*"/>
+															<RowDefinition Height="19*"/>
+														</Grid.RowDefinitions>
+														<VisualStateManager.VisualStateGroups>
+															<VisualStateGroup x:Name="CommonStates1">
+																<VisualState x:Name="Normal1"/>
+																<VisualState x:Name="MouseOver1"/>
+																<VisualState x:Name="Pressed1"/>
+																<VisualState x:Name="Disabled1"/>
+															</VisualStateGroup>
+															<VisualStateGroup x:Name="CommonStates">
+																<VisualState x:Name="Normal"/>
+																<VisualState x:Name="MouseOver">
+																	<Storyboard>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path_Copy">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path_Copy">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																	</Storyboard>
+																</VisualState>
+																<VisualState x:Name="Pressed">
+																	<Storyboard>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)" Storyboard.TargetName="path_Copy">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																		<ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)" Storyboard.TargetName="path_Copy">
+																			<EasingColorKeyFrame KeyTime="0" Value="#FF515151"/>
+																		</ColorAnimationUsingKeyFrames>
+																	</Storyboard>
+																</VisualState>
+																<VisualState x:Name="Disabled"/>
+															</VisualStateGroup>
+														</VisualStateManager.VisualStateGroups>
+														<Path x:Name="path_Copy" Data="M1.9882235,4.708 L13.82178,4.7913335 8.0715525,13.158485 z" Fill="#FF4193D8" HorizontalAlignment="Left" Height="6.334" Margin="2.32,1.718,0,0" Stretch="Fill" Stroke="#FF4193D8" StrokeThickness="2" VerticalAlignment="Top" Width="8.411" Grid.ColumnSpan="3" Grid.RowSpan="2" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+															<Path.RenderTransform>
+																<TransformGroup>
+																	<ScaleTransform/>
+																	<SkewTransform/>
+																	<RotateTransform Angle="0"/>
+																	<TranslateTransform/>
+																</TransformGroup>
+															</Path.RenderTransform>
+														</Path>
+														<Border x:Name="DisabledVisual" BorderBrush="#B2FFFFFF" BorderThickness="1" Grid.ColumnSpan="4" CornerRadius="0,0,.5,.5" Opacity="0" Grid.Row="0" Grid.RowSpan="4"/>
+													</Grid>
+													<ControlTemplate.Triggers>
+														<Trigger Property="IsEnabled" Value="False"/>
+													</ControlTemplate.Triggers>
+												</ControlTemplate>
+											</Setter.Value>
+										</Setter>
+									</Style>
+								</ToggleButton.Style>
+							</ToggleButton>
+						</StackPanel>
+						<Popup x:Name="PART_Popup" IsOpen="{Binding IsChecked, ElementName=_timePickerToggleButton}" StaysOpen="False" Placement="Bottom" PopupAnimation="None" AllowsTransparency="True">
+							<Border BorderThickness="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0" BorderBrush="#FF819DB6" Background="#FF819DB6">
+								<Grid Margin="0">
+									<ListBox x:Name="PART_TimeListItems" BorderThickness="0" DisplayMemberPath="Display" Height="98" Width="65.3" Style="{DynamicResource RC_ListBox.Style_TimePicker_Original}">
+										<ListBox.ItemContainerStyle>
+											<Style TargetType="{x:Type ListBoxItem}">
+												<Setter Property="Template">
+													<Setter.Value>
+														<ControlTemplate TargetType="{x:Type ListBoxItem}">
+															<Border x:Name="Border" SnapsToDevicePixels="True">
+																<ContentPresenter Margin="4"/>
+															</Border>
+															<ControlTemplate.Triggers>
+																<Trigger Property="IsMouseOver" Value="True">
+																	<Setter Property="Background" TargetName="Border" Value="#F3EEFF"/>
+																</Trigger>
+																<Trigger Property="IsSelected" Value="True">
+																	<Setter Property="Background" TargetName="Border" Value="#DADDFF"/>
+																	<Setter Property="Foreground" Value="#515151"/>
+																</Trigger>
+															</ControlTemplate.Triggers>
+														</ControlTemplate>
+													</Setter.Value>
+												</Setter>
+											</Style>
+										</ListBox.ItemContainerStyle>
+									</ListBox>
+								</Grid>
+							</Border>
+						</Popup>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True">
+							<Setter Property="FocusManager.FocusedElement" TargetName="PART_TimeUpDown" Value="{Binding ElementName=PART_TimeUpDown}"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+    <!--RC_ListBox.Style_TimePicker_Original-->
+	<Style x:Key="RC_ListBox.Style_TimePicker_Original" TargetType="{x:Type ListBox}">
+		<Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+		<Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+		<Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ListBox}">
+					<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="1" SnapsToDevicePixels="true">
+						<ScrollViewer Template="{DynamicResource RC_ScrollViewer.ControlTemplate_Original}" Focusable="false" Padding="{TemplateBinding Padding}" HorizontalScrollBarVisibility="Hidden">
+							<ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+						</ScrollViewer>
+					</Border>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+</ResourceDictionary>
