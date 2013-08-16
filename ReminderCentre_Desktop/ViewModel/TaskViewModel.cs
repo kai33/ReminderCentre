@@ -39,9 +39,27 @@ namespace ReminderCentre.ViewModel
             }
             else
             {
-                XmlSerializer reader = new XmlSerializer(typeof(ObservableCollection<Category>));
-                StreamReader file = new System.IO.StreamReader(@".\TaskData.xml");
-                TaskData = reader.Deserialize(file) as ObservableCollection<Category>;
+                string FileName = @".\TaskData.xml";
+                if(File.Exists(FileName)){
+                    XmlSerializer reader = new XmlSerializer(typeof(ObservableCollection<Category>));
+                    StreamReader file = new System.IO.StreamReader(FileName);
+                    TaskData = reader.Deserialize(file) as ObservableCollection<Category>;
+                }
+                else
+                {
+                    TaskData = new ObservableCollection<Category>();
+                    TaskData.Add(new Category()
+                        { CategoryName = "Inbox", Index = Guid.NewGuid().ToString(), 
+                            TaskList = new ObservableCollection<Task>()});
+                    TaskData[0].TaskList.Add(new Task() { TaskName = "Welcome", TaskNote = "", IsFinished = false, SubtaskList = new ObservableCollection<Subtask>() }
+                        );
+                    TaskData.Add(new Category()
+                        { CategoryName = "Today", Index = Guid.NewGuid().ToString(), TaskList = new ObservableCollection<Task>() });
+                    TaskData.Add(new Category()
+                        { CategoryName = "Someday", Index = Guid.NewGuid().ToString(), TaskList = new ObservableCollection<Task>() });
+                    TaskData.Add(new Category()
+                        { CategoryName = "Log", Index = Guid.NewGuid().ToString(), TaskList = new ObservableCollection<Task>() });
+                }
             }
 
             Category_State = "Normal";
